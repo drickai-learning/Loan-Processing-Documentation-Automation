@@ -32,20 +32,13 @@
       margin-bottom: 5px;
       font-weight: bold;
     }
-    input {
+    input, select {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 14px;
-    }
-    input[type="radio"] {
-      width: auto;
-      margin-right: 5px;
-    }
-    .radio-group {
-      margin-bottom: 15px;
     }
     button {
       width: 100%;
@@ -75,15 +68,13 @@
     <label for="email">Email</label>
     <input type="email" id="email" name="email" required>
 
-    <label>Loan Type</label>
-    <div class="radio-group">
-      <input type="radio" id="multiPurpose" name="loanType" value="Multi-Purpose Loan" required>
-      <label for="multiPurpose">Multi-Purpose Loan</label><br>
-      <input type="radio" id="calamity" name="loanType" value="Calamity Loan">
-      <label for="calamity">Calamity Loan</label><br>
-      <input type="radio" id="housing" name="loanType" value="Housing Loan">
-      <label for="housing">Housing Loan</label>
-    </div>
+    <label for="loanType">Loan Type</label>
+    <select id="loanType" name="loanType" required>
+      <option value="" disabled selected>Select Loan Type</option>
+      <option value="Multi-Purpose Loan">Multi-Purpose Loan</option>
+      <option value="Calamity Loan">Calamity Loan</option>
+      <option value="Housing Loan">Housing Loan</option>
+    </select>
 
     <label for="amount">Desired Loan Amount</label>
     <input type="number" id="amount" name="amount" required>
