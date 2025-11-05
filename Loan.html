@@ -1,42 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loan Application | Hedrick's Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loan Application Intake Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f2fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #5b34c7;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    input[type="radio"] {
+      width: auto;
+      margin-right: 5px;
+    }
+    .radio-group {
+      margin-bottom: 15px;
+    }
+    button {
+      width: 100%;
+      background-color: #5b34c7;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4728a5;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Hedrick's Sample Portfolio</h1>
-    <p>Click below to proceed with Loan Documents Processing Automation.</p>
-    <button id="proceedBtn">Proceed</button>
+  <form id="loanForm">
+    <h2>Loan Application Intake Form</h2>
 
-    <form id="loanForm" style="display: none;">
-      <h2>Loan Application Form</h2>
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" name="fullName" required>
 
-      <label for="fullName">Full Name:</label>
-      <input type="text" id="fullName" name="fullName" placeholder="Enter your name" required>
+    <label for="contactInfo">Contact Info</label>
+    <input type="text" id="contactInfo" name="contactInfo" required>
 
-      <label for="loanType">Loan Type:</label>
-      <select id="loanType" name="loanType" required>
-        <option value="">-- Select Loan Type --</option>
-        <option value="multi-purpose">Multi-Purpose Loan</option>
-        <option value="calamity">Calamity Loan</option>
-        <option value="salary">Salary Loan</option>
-        <option value="short-term">Short-Term Loan</option>
-      </select>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
 
-      <label for="amount">Loan Amount:</label>
-      <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+    <label>Loan Type</label>
+    <div class="radio-group">
+      <input type="radio" id="multiPurpose" name="loanType" value="Multi-Purpose Loan" required>
+      <label for="multiPurpose">Multi-Purpose Loan</label><br>
+      <input type="radio" id="calamity" name="loanType" value="Calamity Loan">
+      <label for="calamity">Calamity Loan</label><br>
+      <input type="radio" id="housing" name="loanType" value="Housing Loan">
+      <label for="housing">Housing Loan</label>
+    </div>
 
-      <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    <label for="amount">Desired Loan Amount</label>
+    <input type="number" id="amount" name="amount" required>
 
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+    <label for="documents">Upload Supporting Documents</label>
+    <input type="file" id="documents" name="documents" required>
 
-  <script src="script.js"></script>
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <script>
+    document.getElementById("loanForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      // Replace this with your Make.com webhook URL later
+      const webhookUrl = "https://hook.us1.make.com/YOUR_WEBHOOK_URL";
+
+      try {
+        await fetch(webhookUrl, { method: "POST", body: formData });
+        alert("Your loan application has been submitted successfully!");
+        this.reset();
+      } catch (error) {
+        alert("Error submitting form. Please try again.");
+      }
+    });
+  </script>
 </body>
 </html>
