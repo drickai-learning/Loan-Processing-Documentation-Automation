@@ -9,7 +9,7 @@ document.getElementById("loanForm").addEventListener("submit", async function (e
   };
 
   // 👇 Replace this with your Make.com webhook URL later
-  const webhookURL = "YOUR_WEBHOOK_URL_HERE";
+  const webhookURL = "https://hook.eu2.make.com/swnbdateujocsmdauvqygy2mn2e7ipk7";
 
   try {
     const res = await fetch(webhookURL, {
